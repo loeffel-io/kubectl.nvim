@@ -6,7 +6,7 @@ local M = {}
 --- @param opts { env: string, on_stdout: function, stdin: string }|nil The arguments for the command
 --- @return string The result of the command execution
 function M.shell_command(cmd, args, opts)
-  cmd = "bazel run //deployments/dev:kubectl_earth_user_service"
+  cmd = "bazel run //deployments/dev:kubectl_earth_user_service --"
   opts = opts or {}
   local result = ""
   local error_result = ""
@@ -50,7 +50,7 @@ end
 --- @param on_stderr? function The callback function to execute when there is stderr output (optional)
 --- @param opts { env: string, stdin: string, detach: boolean }|nil The arguments for the command
 function M.shell_command_async(cmd, args, on_exit, on_stdout, on_stderr, opts)
-  cmd = "bazel run //deployments/dev:kubectl_earth_user_service"
+  cmd = "bazel run //deployments/dev:kubectl_earth_user_service --"
   opts = opts or {}
   local result = ""
   table.insert(args, 1, cmd)
@@ -94,7 +94,7 @@ end
 --- @param args string|string[] The arguments for the command
 --- @return string result The result of the command execution
 function M.execute_shell_command(cmd, args)
-  cmd = "bazel run //deployments/dev:kubectl_earth_user_service"
+  cmd = "bazel run //deployments/dev:kubectl_earth_user_service --"
   if type(args) == "table" then
     args = table.concat(args, " ")
   end
@@ -113,7 +113,7 @@ end
 --- @param cmd string The command to execute
 --- @param args string|string[] The arguments for the command
 function M.execute_terminal(cmd, args, opts)
-  cmd = "bazel run //deployments/dev:kubectl_earth_user_service"
+  cmd = "bazel run //deployments/dev:kubectl_earth_user_service --"
   opts = opts or {}
   if type(args) == "table" then
     args = table.concat(args, " ")
